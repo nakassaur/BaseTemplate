@@ -38,17 +38,28 @@ public class LoadingScreenManager : MonoBehaviour
         // Note: These will be loaded when ONLINE map types are the active scene
         if (sceneLoaded.buildIndex == (int)SceneIndex.ONLINE)
         {
-            _scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndex.UI, LoadSceneMode.Additive));
+            op.completed += Async_Completed;
+            _scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndex.UI, LoadSceneMode.Additive));            
         }
 
-        StartCoroutine(GetLoadProgress());
+        //        
+        StartCoroutine(GetLoadProgress(sceneLoaded.buildIndex));
     }
-
+        
     // -- Event Signature
     void LoadingScreenSO_EventOnAsyncAdd(AsyncOperation op, string sceneName) { InternalAddAsync(op, sceneName); }
+    void Async_Completed(AsyncOperation obj)
+    {
+        // Deletes the Camera that belongs to the scene structure pre-game (title & main menu)
+        // to prevent undesired behaviours
+        if (TitleCamera.singleton == null) return;
+
+        if (_debug == true) Debug.LogError("LoadingScreenManager: Destroying TITLE CAMERA");
+        Destroy(TitleCamera.singleton.gameObject);
+    }
 
     // -- Coroutine
-    public IEnumerator GetLoadProgress()
+    public IEnumerator GetLoadProgress(int sceneIndex)
     {
         for (int i = 0; i < _scenesLoading.Count; i++)
         {
@@ -66,7 +77,7 @@ public class LoadingScreenManager : MonoBehaviour
 
             if (_debug == true) Debug.LogError("LoadingScreenManager: Disabling Container");
             mainContainer.SetActive(false);
-            LoadingScreenSO.LoadComplete();
+            LoadingScreenSO.LoadComplete();            
         });
 
     }
