@@ -28,14 +28,21 @@ public class LoadingScreenManager : MonoBehaviour
     {
         if (_debug == true) Debug.LogError("LoadingScreenManager: Enabling Container");
         mainContainer.SetActive(true);
-
+                
         _scenesLoading.Add(op);
         Scene sceneLoaded = SceneManager.GetSceneByPath(sceneName);
+
+        if (sceneLoaded.buildIndex == -1)
+            sceneLoaded = SceneManager.GetSceneByName(sceneName);
+
+        if (_debug == true) Debug.LogError("LoadingScreenManager: Loading " + sceneName + "(Index: " + sceneLoaded.buildIndex + ")");
 
         // -- !! Add Subscenes here ie. UI, Results, etc !!
         // Note: These will be loaded when ONLINE map types are the active scene
         if (sceneLoaded.buildIndex == (int)SceneIndex.ONLINE)
         {
+            
+            
             op.completed += Async_Completed;
             _scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndex.UI, LoadSceneMode.Additive));            
         }

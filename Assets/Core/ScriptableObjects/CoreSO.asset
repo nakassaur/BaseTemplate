@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06763689051657d498edc3bf110c2bf0, type: 3}
   m_Name: CoreSO
   m_EditorClassIdentifier: 
-  LoadingScreenSO: {fileID: 0}
+  LoadingScreenSO: {fileID: 11400000, guid: f2a3195e79c074c40a1d699a16cc7eaa, type: 2}
