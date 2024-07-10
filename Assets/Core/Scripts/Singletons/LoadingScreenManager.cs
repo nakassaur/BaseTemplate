@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Mirror;
-using Unity.VisualScripting;
 
 public class LoadingScreenManager : MonoBehaviour
 {
@@ -48,6 +46,7 @@ public class LoadingScreenManager : MonoBehaviour
         
     // -- Event Signature
     void LoadingScreenSO_EventOnAsyncAdd(AsyncOperation op, string sceneName) { InternalAddAsync(op, sceneName); }
+    
     void Async_Completed(AsyncOperation obj)
     {
         // Deletes the Camera that belongs to the scene structure pre-game (title & main menu)
