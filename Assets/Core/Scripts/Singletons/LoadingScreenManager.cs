@@ -6,6 +6,14 @@ using UnityEngine.Serialization;
 
 public class LoadingScreenManager : MonoBehaviour
 {
+    #region Singleton Setup
+    public static LoadingScreenManager singleton;
+    void Awake()
+    {
+        singleton = this;
+    }
+    #endregion
+
     [SerializeField] bool _debug;
     [SerializeField] LoadingScreenSO LoadingScreenSO;
     [FormerlySerializedAs("mainContainer")][SerializeField] GameObject _mainContainer;
