@@ -2,16 +2,20 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Serialization;
 
 public class LoadingScreenManager : MonoBehaviour
 {
     [SerializeField] bool _debug;
     [SerializeField] LoadingScreenSO LoadingScreenSO;
-    [SerializeField] GameObject mainContainer;
+    [FormerlySerializedAs("mainContainer")][SerializeField] GameObject _mainContainer;
 
     [SerializeField] float _postLoadDelay = 2.0f;
 
     List<AsyncOperation> _scenesLoading = new List<AsyncOperation>();
+
+    //
+    public bool IsOpen => _mainContainer.activeSelf;
 
     void Start()
     {
@@ -27,7 +31,7 @@ public class LoadingScreenManager : MonoBehaviour
     void InternalAddAsync(AsyncOperation op, string sceneName)
     {
         if (_debug == true) Debug.LogError("LoadingScreenManager: Enabling Container");
-        mainContainer.SetActive(true);
+        _mainContainer.SetActive(true);
                 
         _scenesLoading.Add(op);
         Scene sceneLoaded = SceneManager.GetSceneByPath(sceneName);
@@ -82,7 +86,7 @@ public class LoadingScreenManager : MonoBehaviour
             if (_debug == true) Debug.LogError("LoadingScreenManager: Delay elapsed (" + _postLoadDelay + "s)" );
 
             if (_debug == true) Debug.LogError("LoadingScreenManager: Disabling Container");
-            mainContainer.SetActive(false);
+            _mainContainer.SetActive(false);
             LoadingScreenSO.LoadComplete();            
         });
 
