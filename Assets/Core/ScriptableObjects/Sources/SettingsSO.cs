@@ -17,7 +17,7 @@ public class SettingsSO : ScriptableObject
         Debug.LogError("Version Mismatch. Cleaning Prefs");
 
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetString(PrefsList._VERSION, version);
+        PlayerPrefs.SetString(PrefsListBase._VERSION, version);
     }
 
     //
@@ -32,7 +32,7 @@ public class SettingsSO : ScriptableObject
     public void Close() { this.EventOnSettingsClose?.Invoke(); }
 
     //
-    public void SetAlias(string alias) { PlayerPrefs.SetString(PrefsList._ALIAS, alias); }
+    public void SetAlias(string alias) { PlayerPrefs.SetString(PrefsListBase._ALIAS, alias); }
 
     // -- Property Defaults
     readonly static int _MAXFPS = 500;

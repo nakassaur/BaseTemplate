@@ -1,5 +1,5 @@
 using UnityEngine;
-public class PrefsList : MonoBehaviour
+public abstract class PrefsListBase : MonoBehaviour
 {
     public static readonly string _VERSION = "version";
     public static readonly string _LASTIP = "lastip";
@@ -9,12 +9,6 @@ public class PrefsList : MonoBehaviour
     public static readonly string _SENSITIVITY = "sensitivity";
     public static readonly string _DEADZONEMIN = "deadzoneMin";
     public static readonly string _DEADZONEMAX = "deadzoneMax";
-
-    //
-    public static readonly string _LASTCHARACTER = "lastcharacter";
-    public static readonly string _LASTCOLOR = "lastcolor";
-
-    // -- Gameplay Related
 
     // -- Graphics Related
     public static readonly string _FPSLIMIT = "fpsLimit";
