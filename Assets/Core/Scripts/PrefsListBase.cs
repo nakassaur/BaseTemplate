@@ -10,6 +10,8 @@ public abstract class PrefsListBase : MonoBehaviour
     public static readonly string _DEADZONEMIN = "deadzoneMin";
     public static readonly string _DEADZONEMAX = "deadzoneMax";
 
+    public static readonly string _LOCALE = "locale";
+
     // -- Graphics Related
     public static readonly string _FPSLIMIT = "fpsLimit";
     public static readonly string _DISPLAYMODE = "displayMode";
