@@ -85,9 +85,15 @@ public class SettingsSO : ScriptableObject
     }
 
     //
-    public delegate void OnSensitivityChanged(float value);
-    public event OnSensitivityChanged EventOnSensitivityChanged;
+    public delegate void OnSensitivityChangedDelegate(float value);
+    public event OnSensitivityChangedDelegate EventOnSensitivityChanged;
 
     public void SensitivityChanged(float value) { this.EventOnSensitivityChanged?.Invoke(value); }
+
+    //
+    public delegate void OnLocaleChangedDelegate(int id);
+    public event OnLocaleChangedDelegate EventOnLocaleChanged;
+
+    public void SetLocale(int id) { this.EventOnLocaleChanged?.Invoke(id); }
 }
 
