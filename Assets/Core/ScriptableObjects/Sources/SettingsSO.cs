@@ -6,7 +6,7 @@ public class SettingsSO : ScriptableObject
     public readonly string version = "0.0.8";
 
     public string defaultValueCache;
-
+        
     public void ValidateVersion(string ver)
     {
         Debug.LogError("Validating Settings Version " + ver + " vs " + version);
@@ -95,5 +95,18 @@ public class SettingsSO : ScriptableObject
     public event OnLocaleChangedDelegate EventOnLocaleChanged;
 
     public void SetLocale(int id) { this.EventOnLocaleChanged?.Invoke(id); }
+
+    //
+    public int desiredResolution;
+
+    public int desiredRefreshRate;
+
+    public int desiredWindowMode;
+
+    public void SetDesiredResolution (int index) { desiredResolution = index; }
+
+    public void SetDesiredRefreshRate (int index) { desiredRefreshRate = index; }
+
+    public void SetDesiredWindowMode(int index) { desiredWindowMode = index; }
 }
 
