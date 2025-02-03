@@ -100,13 +100,13 @@ public class SettingsSO : ScriptableObject
     //
     public int desiredResolution;
 
-    public int desiredRefreshRate;
+    public string desiredRefreshRate;
 
     public int desiredWindowMode;
 
     public void SetDesiredResolution (int index) { desiredResolution = index; }
 
-    public void SetDesiredRefreshRate (int index) { desiredRefreshRate = index; }
+    public void SetDesiredRefreshRate (string value) { desiredRefreshRate = value; }
 
     public void SetDesiredWindowMode(int index) { desiredWindowMode = index; }
 
