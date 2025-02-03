@@ -24,16 +24,35 @@ public class ResolutionTool : MonoBehaviour
 
     public static List<ResolutionSimple> GetResolutions()
     {
-        List<ResolutionSimple> res = new List<ResolutionSimple>();
+        List<ResolutionSimple> simple = new List<ResolutionSimple>();
 
         List<Resolution> resolutions = new List<Resolution>();
 
         resolutions = Screen.resolutions.Reverse().ToList();
 
         foreach (Resolution r in resolutions)
-            res.Add(new ResolutionSimple(r.width, r.height));
+            simple.Add(new ResolutionSimple(r.width, r.height));
+               
+        return simple.Distinct().ToList();
+    }
 
-        return res.Distinct().ToList();
+    public static List<string> GetResolutionsStringList()
+    {
+        List<ResolutionSimple> simple = new List<ResolutionSimple>();
+
+        List<Resolution> resolutions = new List<Resolution>();
+
+        resolutions = Screen.resolutions.Reverse().ToList();
+
+        foreach (Resolution r in resolutions)
+            simple.Add(new ResolutionSimple(r.width, r.height));
+
+        List<string> stringMode = new List<string>();
+
+        foreach (ResolutionSimple r in simple)
+            stringMode.Add(r.ToString());
+
+        return stringMode;        
     }
 
     public static List<RefreshRate> GetRefreshRates()
@@ -45,5 +64,21 @@ public class ResolutionTool : MonoBehaviour
         List<RefreshRate> refreshRates = resolutions.Select(x => x.refreshRateRatio).Distinct().ToList();
 
         return refreshRates;
+    }
+
+    public static List<string> GetRefreshRatesStringList()
+    {
+        List<Resolution> resolutions = new List<Resolution>();
+
+        resolutions = Screen.resolutions.Reverse().ToList();
+
+        List<RefreshRate> refreshRates = resolutions.Select(x => x.refreshRateRatio).Distinct().ToList();
+
+        List<string> stringMode = new List<string>();
+
+        foreach (RefreshRate r in refreshRates)
+            stringMode.Add(r.ToString());
+
+        return stringMode;
     }
 }
