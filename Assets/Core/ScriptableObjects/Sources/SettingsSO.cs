@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SettingsSO", menuName = "ScriptableObjects/SettingsSO")]
@@ -108,5 +109,15 @@ public class SettingsSO : ScriptableObject
     public void SetDesiredRefreshRate (int index) { desiredRefreshRate = index; }
 
     public void SetDesiredWindowMode(int index) { desiredWindowMode = index; }
+
+    public List<ResolutionTool.ResolutionSimple> GetResolutions()
+    {
+        return ResolutionTool.GetResolutions();
+    }
+
+    public List<RefreshRate> GetRefreshRates()
+    {
+        return ResolutionTool.GetRefreshRates();
+    }
 }
 
