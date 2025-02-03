@@ -8,7 +8,7 @@ public class ResolutionTool : MonoBehaviour
     public struct ResolutionSimple
     {
         public int width;
-        public int height;
+        public int height;        
 
         public ResolutionSimple(int width, int height)
         {
@@ -44,47 +44,28 @@ public class ResolutionTool : MonoBehaviour
 
     public static List<string> GetResolutionsStringList()
     {
-        List<ResolutionSimple> simple = new List<ResolutionSimple>();
+        List<ResolutionSimple> simple = GetResolutions();
 
-        List<Resolution> resolutions = new List<Resolution>();
-
-        resolutions = Screen.resolutions.Reverse().ToList();
-
-        foreach (Resolution r in resolutions)
-            simple.Add(new ResolutionSimple(r.width, r.height));
-
-        List<string> stringMode = new List<string>();
-
-        foreach (ResolutionSimple r in simple)
-            stringMode.Add(r.ToString());
-
-        return stringMode;        
+        return simple.Select(x => x.ToString()).ToList();
     }
 
-    public static List<RefreshRate> GetRefreshRates()
+
+    // Example
+    // Switch to 640 x 480 full-screen at 60 hz
+    // Screen.SetResolution(640, 480, FullScreenMode.ExclusiveFullScreen, new RefreshRate() { numerator = 60, denominator = 1 });
+    public static List<string> GetRefreshRates()
     {
         List<Resolution> resolutions = new List<Resolution>();
 
         resolutions = Screen.resolutions.Reverse().ToList();
 
-        List<RefreshRate> refreshRates = resolutions.Select(x => x.refreshRateRatio).Distinct().ToList();
+        List<int> refreshRatesRaw = resolutions.Select(x => Mathf.RoundToInt((float) x.refreshRateRatio.value)).Distinct().ToList();
+
+        refreshRatesRaw.Sort();
+
+        List<string> refreshRates = refreshRatesRaw.Select(x => x.ToString()).Reverse().ToList();
 
         return refreshRates;
     }
 
-    public static List<string> GetRefreshRatesStringList()
-    {
-        List<Resolution> resolutions = new List<Resolution>();
-
-        resolutions = Screen.resolutions.Reverse().ToList();
-
-        List<RefreshRate> refreshRates = resolutions.Select(x => x.refreshRateRatio).Distinct().ToList();
-
-        List<string> stringMode = new List<string>();
-
-        foreach (RefreshRate r in refreshRates)
-            stringMode.Add((Mathf.CeilToInt((float) r.value)).ToString() + " Hz");
-
-        return stringMode;
-    }
 }
