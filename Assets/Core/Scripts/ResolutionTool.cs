@@ -16,6 +16,12 @@ public class ResolutionTool : MonoBehaviour
             this.height = height;
         }
 
+        public ResolutionSimple(Resolution resolution)
+        {
+            this.width = resolution.width;
+            this.height = resolution.height;
+        }
+
         public override readonly string ToString()
         {
             return width + "x" + height;
