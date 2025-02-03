@@ -83,7 +83,7 @@ public class ResolutionTool : MonoBehaviour
         List<string> stringMode = new List<string>();
 
         foreach (RefreshRate r in refreshRates)
-            stringMode.Add(r.ToString());
+            stringMode.Add((Mathf.CeilToInt((float) r.value)).ToString() + " Hz");
 
         return stringMode;
     }
