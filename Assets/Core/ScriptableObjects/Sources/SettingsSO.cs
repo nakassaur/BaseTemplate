@@ -110,14 +110,5 @@ public class SettingsSO : ScriptableObject
 
     public void SetDesiredWindowMode(int index) { desiredWindowMode = index; }
 
-    public List<ResolutionTool.ResolutionSimple> GetResolutions()
-    {
-        return ResolutionTool.GetResolutions();
-    }
-
-    public List<RefreshRate> GetRefreshRates()
-    {
-        return ResolutionTool.GetRefreshRates();
-    }
 }
 
