@@ -110,5 +110,7 @@ public class SettingsSO : ScriptableObject
 
     public void SetDesiredWindowMode(int index) { desiredWindowMode = index; }
 
+    [Header("Defaults")]
+    public List<string> windowModes;
 }
 
